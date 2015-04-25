@@ -1,0 +1,27 @@
+{
+  "name": "mat-paper",
+  "license": "BSD-3-Clause",
+  "version": "0.8.0",
+  "description": "This component is used to display a material paper.",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "main": [
+    "mat-paper.html"
+  ],
+  "keywords": [
+    "web-components"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-palette": "ExpandJS/mat-palette",
+    "xp-master-state": "ExpandJS/xp-master-state",
+    "font-roboto": "Polymer/font-roboto",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "devDependencies": {
+    "mat-demo": "ExpandJS/mat-demo"
+  }
+}
