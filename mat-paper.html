@@ -208,6 +208,8 @@ This element is used to display a material paper.
                 color: hsla(0, 0%, 100%, 1);
             }
 
+            /* BRIGHTNESS */
+
             :host([brightness="header"][foreground="dark"]) {
                 background: hsla(0, 0%, 88%, 1);
             }
@@ -273,10 +275,12 @@ This element is used to display a material paper.
 
             :host([disabled][foreground="dark"]) {
                 background: hsla(0, 0%, 0%, 0.12) !important;
+                color: hsla(0, 0%, 0%, 0.26);
             }
 
             :host([disabled][foreground="light"]) {
                 background: hsla(0, 0%, 100%, 0.12) !important;
+                color: hsla(0, 0%, 100%, 0.30);
             }
 
             /* SCROLLBAR */
