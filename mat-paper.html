@@ -318,13 +318,29 @@ This element is used to display a material paper.
                 background: hsla(0, 0%, 38%, 1);
             }
         </style>
-        <template context="{{}}" is="xp-master-state" id="xpMasterState" slaveTag="mat-ink"></template>
+        <template context="{{}}" is="xp-master-state" slaveTag="mat-ink"></template>
+        <template context="{{}}" is="xp-master-state" slaveTag="mat-paper"></template>
+        <template context="{{}}" is="xp-slave-state" master="{{layer}}" masterTag="mat-paper"></template>
         <mat-palette id="matPaperPalette"></mat-palette>
         <content id="content"></content>
     </template>
 
     <script>
         XPElement({
+
+            /**
+             * Fired when the slave is attached.
+             *
+             * @event xp-slave
+             * @param {Element} firer
+             * @param {Element} slave
+             * @param {string} masterSelector
+             * @param {string} masterTag
+             * @param {boolean} isAttached
+             * @bubbles
+             */
+
+            /*********************************************************************/
 
             /**
              * Falls the paper.
@@ -413,7 +429,8 @@ This element is used to display a material paper.
 
             // OBSERVE
             observe: {
-                'background disabled': 'refresh'
+                'background disabled': 'refresh',
+                'layer.theme': 'themeObserver'
             },
 
             // PUBLISH
@@ -534,6 +551,16 @@ This element is used to display a material paper.
             instances: [],
 
             /**
+             * The master paper.
+             *
+             * @property layer
+             * @type Element
+             * @readonly
+             * @private
+             */
+            layer: null,
+
+            /**
              * The maximum value of z.
              *
              * @property zMax
@@ -558,24 +585,13 @@ This element is used to display a material paper.
             // OBSERVER
             pressableChanged: function (pre, post) {
                 var self = this;
-                if (post) { XP.listen(self, {down: self.handleDownBinded, up: self.handleUpBinded}); }
-                if (!post) { XP.unlisten(self, {down: self.handleDownBinded, up: self.handleUpBinded}); }
+                if (post) { XP.listen(self, {down: self.handleDownBound, up: self.handleUpBound}); }
+                if (!post) { XP.unlisten(self, {down: self.handleDownBound, up: self.handleUpBound}); }
             },
 
             // OBSERVER
-            themeChanged: function (pre, post) {
-
-                // Vars
-                var self = this;
-
-                // Checking
-                if (self.theming) { self.theming = false; return; }
-
-                // Propagating
-                self.instances.forEach(function (instance) {
-                    instance.theming = instance !== self;
-                    instance.theme   = post;
-                });
+            themeObserver: function (pre, post) {
+                this.theme = post;
             },
 
             /*********************************************************************/
@@ -583,8 +599,8 @@ This element is used to display a material paper.
             // LISTENER
             ready: function () {
                 var self = this;
-                self.handleDownBinded = self.handleDown.bind(self);
-                self.handleUpBinded   = self.handleUp.bind(self);
+                self.handleDownBound = self.handleDown.bind(self);
+                self.handleUpBound   = self.handleUp.bind(self);
                 self.instances.push(self);
             },
 
