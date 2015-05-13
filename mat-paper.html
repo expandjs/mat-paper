@@ -193,7 +193,7 @@ This element is used to display a material paper.
             :host {
                 border: 0 solid transparent;
                 display: block;
-                overflow: auto;
+                overflow: hidden;
                 position: relative;
 
                 /* TRANSITIONS */
@@ -294,29 +294,6 @@ This element is used to display a material paper.
             :host([disabled][foreground="light"]) {
                 background: hsla(0, 0%, 100%, 0.12) !important;
                 color: hsla(0, 0%, 100%, 0.30);
-            }
-
-            /* SCROLLBAR */
-
-            :host::-webkit-scrollbar,
-            :host ::content ::-webkit-scrollbar {
-                height: 8px;
-                width: 8px;
-            }
-
-            :host::-webkit-scrollbar *,
-            :host ::content ::-webkit-scrollbar * {
-                background: transparent;
-            }
-
-            :host([foreground="dark"])::-webkit-scrollbar-thumb,
-            :host([foreground="dark"]) ::content ::-webkit-scrollbar-thumb {
-                background: hsla(0, 0%, 74%, 1);
-            }
-
-            :host([foreground="light"])::-webkit-scrollbar-thumb,
-            :host([foreground="light"]) ::content ::-webkit-scrollbar-thumb {
-                background: hsla(0, 0%, 38%, 1);
             }
         </style>
         <template context="{{}}" is="xp-master-state" slaveTag="mat-ink"></template>
