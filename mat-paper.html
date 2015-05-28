@@ -196,16 +196,22 @@ This element is used to display a material paper.
                 display: block;
                 overflow: hidden;
                 position: relative;
-
-                /* TRANSITIONS */
-                transition: border .4s cubic-bezier(.55, 0, .01, 1),
-                            box-shadow .4s cubic-bezier(.55, 0, .01, 1),
-                            opacity .4s cubic-bezier(.55, 0, .01, 1),
-                            visibility .4s cubic-bezier(.55, 0, .01, 1),
-                            border-radius .8s cubic-bezier(.55, 0, .01, 1),
-                            height .8s cubic-bezier(.55, 0, .01, 1),
-                            transform .8s cubic-bezier(.55, 0, .01, 1),
-                            width .8s cubic-bezier(.55, 0, .01, 1);
+                -webkit-transition: border 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            box-shadow 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            opacity 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            visibility 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            border-radius 0.8s cubic-bezier(0.55, 0, 0.01, 1),
+                            height 0.8s cubic-bezier(0.55, 0, 0.01, 1),
+                            -webkit-transform 0.8s cubic-bezier(0.55, 0, 0.01, 1),
+                            width 0.8s cubic-bezier(0.55, 0, 0.01, 1);
+                transition: border 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            box-shadow 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            opacity 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            visibility 0.4s cubic-bezier(0.55, 0, 0.01, 1),
+                            border-radius 0.8s cubic-bezier(0.55, 0, 0.01, 1),
+                            height 0.8s cubic-bezier(0.55, 0, 0.01, 1),
+                            transform 0.8s cubic-bezier(0.55, 0, 0.01, 1),
+                            width 0.8s cubic-bezier(0.55, 0, 0.01, 1);
             }
 
             /* FOREGROUND */
