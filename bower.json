@@ -24,13 +24,13 @@
     "**/.*"
   ],
   "dependencies": {
-    "expandjs": "ExpandJS/expandjs",
-    "mat-palette": "ExpandJS/mat-palette",
-    "xp-master-state": "ExpandJS/xp-master-state",
-    "font-roboto": "Polymer/font-roboto",
+    "expandjs": "ExpandJS/expandjs#alpha",
+    "mat-palette": "ExpandJS/mat-palette#alpha",
+    "xp-master-state": "ExpandJS/xp-master-state#alpha",
+    "font-roboto": "Polymer/font-roboto#alpha",
     "polymer": "Polymer/polymer#^0.5"
   },
   "devDependencies": {
-    "mat-demo": "ExpandJS/mat-demo"
+    "mat-demo": "ExpandJS/mat-demo#alpha"
   }
 }
