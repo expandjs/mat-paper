@@ -16,16 +16,16 @@ This element is used to display a material paper.
 @homepage http://expandjs.com/elements/mat-paper
 @demo http://expandjs.com/demo/mat-paper
 
-@dependency polymer Polymer/polymer
-@dependency expandjs ExpandJS/expandjs
-@dependency iron-flex-layout PolymerElements/iron-flex-layout
-@dependency mat-palette ExpandJS/mat-palette
-@dependency mat-shadow ExpandJS/mat-shadow
-@dependency mat-typography ExpandJS/mat-typography
-@dependency xp-master-state ExpandJS/xp-master-state
-@dependency xp-slave-state ExpandJS/xp-slave-state
+@dependency polymer Polymer/polymer#^1.0.4
+@dependency expandjs ExpandJS/expandjs#0.9.1
+@dependency iron-flex-layout PolymerElements/iron-flex-layout#^1.0.2
+@dependency mat-palette ExpandJS/mat-palette#0.9.1
+@dependency mat-shadow ExpandJS/mat-shadow#0.9.1
+@dependency mat-typography ExpandJS/mat-typography#0.9.1
+@dependency xp-master-state ExpandJS/xp-master-state#0.9.1
+@dependency xp-slave-state ExpandJS/xp-slave-state#0.9.1
 
-@devDependency mat-demo ExpandJS/mat-demo
+@devDependency mat-demo ExpandJS/mat-demo#0.9.1
 -->
 
 <link rel="import" href="../polymer/polymer.html">
@@ -136,9 +136,9 @@ This element is used to display a material paper.
     </style>
 
     <template>
-        <xp-master-state slaves="{{inks}}" slave-tag="mat-ink"></xp-master-state>
-        <xp-master-state slaves="{{papers}}" slave-tag="mat-paper"></xp-master-state>
-        <xp-slave-state master="{{layer}}" master-tag="mat-paper"></xp-slave-state>
+        <template is="xp-master-state" slaves="{{inks}}" slave-tag="mat-ink"></template>
+        <template is="xp-master-state" slaves="{{papers}}" slave-tag="mat-paper"></template>
+        <template is="xp-slave-state" master="{{layer}}" master-tag="mat-paper"></template>
         <content id="content"></content>
     </template>
 
@@ -221,8 +221,8 @@ This element is used to display a material paper.
 
             // LISTENERS
             listeners: {
-                'mousedown': '_handleTouch',
-                'mouseup': '_handleTouch'
+                'down': '_handleTouch',
+                'up': '_handleTouch'
             },
 
             // OBSERVERS
@@ -497,10 +497,10 @@ This element is used to display a material paper.
                 if (!self.pressable) { return; }
 
                 // Setting
-                self._setPressed(event.type === 'mousedown');
+                self._setPressed(event.type === 'down');
 
                 // Animating
-                self[event.type === 'mousedown' ? 'raise' : 'fall']();
+                self[event.type === 'down' ? 'raise' : 'fall']();
             }
         });
     </script>
