@@ -35,6 +35,7 @@ This element is used to display a material paper.
 <link rel="import" href="../mat-shadow/mat-shadow.html">
 <link rel="import" href="../mat-typography/mat-typography.html">
 <link rel="import" href="../xp-master-state/xp-master-state.html">
+<link rel="import" href="../xp-shared-behavior/xp-shared-behavior.html">
 <link rel="import" href="../xp-slave-state/xp-slave-state.html">
 
 <dom-module id="mat-paper">
@@ -150,7 +151,8 @@ This element is used to display a material paper.
 
             // BEHAVIORS
             behaviors: [
-                Polymer.MatPalette
+                Polymer.MatPalette,
+                Polymer.XPSharedBehavior
             ],
 
             /*********************************************************************/
@@ -377,14 +379,12 @@ This element is used to display a material paper.
                  *
                  * @attribute theme
                  * @type "dark" | "light"
-                 * @default "light"
                  * @notifies
                  */
                 theme: {
                     notify: true,
                     observer: '_themeChanged',
-                    type: String,
-                    value: 'light'
+                    type: String
                 },
 
                 /**
@@ -465,24 +465,32 @@ This element is used to display a material paper.
 
             // OBSERVER
             _foregroundChanged: function (post) {
-                XP.forEach(this.inks || [], function (ink) { ink._setForeground(post); });
+                if (this.inks) { this.inks.forEach(function (ink) { ink._setForeground(post); }); }
             },
 
             // OBSERVER
-            _layerChanged: function (post) {
-                if (post && arguments.length > 1) { this.theme = post.theme; }
+            _layerChanged: function () {
+                if (this.layer) { this.theme = this.layer.theme; }
             },
 
             // OBSERVER
             _themeChanged: function (post) {
-                XP.forEach(this.papers || [], function (paper) { paper.theme = post; });
+                if (this.papers) { this.papers.forEach(function (paper) { paper.theme = post; }); }
             },
 
             /*********************************************************************/
 
             // LISTENER
             ready: function () {
-                this.push('instances', this);
+
+                // Vars
+                var self = this;
+
+                // Pushing
+                self.push('instances', self);
+
+                // Setting
+                self.theme = self.theme || self.shared.theme || 'light';
             },
 
             /*********************************************************************/
