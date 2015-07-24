@@ -7,7 +7,34 @@ The complete set of contributors may be found at https://expandjs.github.io/CONT
 -->
 
 <!--
-This element is used to display a material paper.
+An element used to display a generic [Material Design paper](http://www.google.com/design/spec/what-is-material/material-properties.html).
+
+By default the paper does not respond to user interaction.
+
+```html
+<mat-paper>Lorem ipsum...</mat-paper>
+```
+
+To make it lift on touch, set `pressable` and `z` to a value different than `0`.
+In addition, if you want to make the paper [respond on user interaction](http://www.google.com/design/spec/animation/responsive-interaction.html#responsive-interaction-surface-reaction),
+you can use it in combination with [mat-ripple](http://expandjs.com/elements/mat-ripple).
+
+```html
+<mat-paper pressable z="2">
+    <span>Will lift and ripple on touch</span>
+    <mat-ripple></mat-ripple>
+<mat-paper>
+```
+
+---
+
+## Styling
+
+The paper's background color can be changed accordingly to the [Material Design palette](http://www.google.com/design/spec/style/color.html#color-color-palette).
+
+```html
+<mat-paper background="blue-100">Lorem ipsum...</mat-paper>
+```
 
 @element mat-paper
 @description A custom element used to display a Material Design paper
@@ -16,19 +43,20 @@ This element is used to display a material paper.
 @homepage http://expandjs.com/elements/mat-paper
 @demo http://expandjs.com/demo/mat-paper
 
-@behavior xp-shared-behavior http://expandjs.com/elements/xp-shared-behavior
+@behavior mat-palette /bower_components/mat-palette/mat-palette.html
+@behavior xp-shared-behavior /bower_components/xp-shared-behavior/xp-shared-behavior.html
 
 @dependency polymer Polymer/polymer#^1.0.0
-@dependency expandjs ExpandJS/expandjs#0.9.4
+@dependency expandjs ExpandJS/expandjs#0.9.5
 @dependency iron-flex-layout PolymerElements/iron-flex-layout#^1.0.0
-@dependency mat-palette ExpandJS/mat-palette#0.9.4
-@dependency mat-shadow ExpandJS/mat-shadow#0.9.4
-@dependency mat-typography ExpandJS/mat-typography#0.9.4
-@dependency xp-master-state ExpandJS/xp-master-state#0.9.4
-@dependency xp-shared-behavior ExpandJS/xp-shared-behavior#0.9.4
-@dependency xp-slave-state ExpandJS/xp-slave-state#0.9.4
+@dependency mat-palette ExpandJS/mat-palette#0.9.5
+@dependency mat-shadow ExpandJS/mat-shadow#0.9.5
+@dependency mat-typography ExpandJS/mat-typography#0.9.5
+@dependency xp-master-state ExpandJS/xp-master-state#0.9.5
+@dependency xp-shared-behavior ExpandJS/xp-shared-behavior#0.9.5
+@dependency xp-slave-state ExpandJS/xp-slave-state#0.9.5
 
-@devDependency mat-demo ExpandJS/mat-demo#0.9.4
+@devDependency mat-demo ExpandJS/mat-demo#0.9.5
 -->
 
 <link rel="import" href="../polymer/polymer.html">
