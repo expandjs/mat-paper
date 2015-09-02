@@ -338,7 +338,7 @@ The paper's background color can be changed accordingly to the [Material Design 
                  * @readonly
                  */
                 foreground: {
-                    computed: '_computeForeground(background, brightness, theme, disabled)',
+                    computed: '_computeForeground(background, brightness, disabled, theme, shared.*)',
                     notify: true,
                     observer: '_foregroundChanged',
                     reflectToAttribute: true,
@@ -446,7 +446,9 @@ The paper's background color can be changed accordingly to the [Material Design 
                 theme: {
                     notify: true,
                     observer: '_themeChanged',
-                    type: String
+                    reflectToAttribute: true,
+                    type: String,
+                    value: null
                 },
 
                 /**
@@ -518,9 +520,9 @@ The paper's background color can be changed accordingly to the [Material Design 
             /*********************************************************************/
 
             // COMPUTER
-            _computeForeground: function (background, brightness, theme, disabled) {
-                var palette = (!disabled && background) || (brightness !== "overlay" && theme) || "light";
-                return this._getForeground(palette, brightness === "placeholder" && !background && !disabled);
+            _computeForeground: function (background, brightness, disabled, theme) {
+                var palette = (!disabled && background) || (brightness === 'overlay' && 'light') || theme || this.shared.theme;
+                return this._getForeground(palette, brightness === 'placeholder' && !background && !disabled);
             },
 
             /*********************************************************************/
@@ -544,15 +546,7 @@ The paper's background color can be changed accordingly to the [Material Design 
 
             // LISTENER
             ready: function () {
-
-                // Vars
-                var self = this;
-
-                // Pushing
-                self.push('instances', self);
-
-                // Setting
-                self.theme = self.theme || self.shared.theme || 'light';
+                this.push('instances', self);
             },
 
             /*********************************************************************/
