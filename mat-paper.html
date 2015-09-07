@@ -49,7 +49,7 @@ The paper's background color can be changed accordingly to the [Material Design 
 @behavior xp-shared-behavior /bower_components/xp-shared-behavior/xp-shared-behavior.html
 @behavior xp-slave-behavior /bower_components/xp-slave-behavior/xp-slave-behavior.html
 
-@dependency polymer Polymer/polymer#^1.1.0
+@dependency polymer Polymer/polymer#^1.0.0
 @dependency expandjs ExpandJS/expandjs#0.9.8
 @dependency iron-flex-layout PolymerElements/iron-flex-layout#^1.0.0
 @dependency mat-palette ExpandJS/mat-palette#0.9.8
@@ -338,7 +338,7 @@ The paper's background color can be changed accordingly to the [Material Design 
                  * @readonly
                  */
                 foreground: {
-                    computed: '_computeForeground(background, brightness, disabled, theme, shared.*)',
+                    computed: '_computeForeground(background, brightness, theme, disabled)',
                     notify: true,
                     observer: '_foregroundChanged',
                     reflectToAttribute: true,
@@ -446,9 +446,7 @@ The paper's background color can be changed accordingly to the [Material Design 
                 theme: {
                     notify: true,
                     observer: '_themeChanged',
-                    reflectToAttribute: true,
-                    type: String,
-                    value: null
+                    type: String
                 },
 
                 /**
@@ -520,9 +518,9 @@ The paper's background color can be changed accordingly to the [Material Design 
             /*********************************************************************/
 
             // COMPUTER
-            _computeForeground: function (background, brightness, disabled, theme) {
-                var palette = (!disabled && background) || (brightness === 'overlay' && 'light') || theme || this.shared.theme;
-                return this._getForeground(palette, brightness === 'placeholder' && !background && !disabled);
+            _computeForeground: function (background, brightness, theme, disabled) {
+                var palette = (!disabled && background) || (brightness !== "overlay" && theme) || "light";
+                return this._getForeground(palette, brightness === "placeholder" && !background && !disabled);
             },
 
             /*********************************************************************/
@@ -546,7 +544,15 @@ The paper's background color can be changed accordingly to the [Material Design 
 
             // LISTENER
             ready: function () {
-                this.push('instances', self);
+
+                // Vars
+                var self = this;
+
+                // Pushing
+                self.push('instances', self);
+
+                // Setting
+                self.theme = self.theme || self.shared.theme || 'light';
             },
 
             /*********************************************************************/
