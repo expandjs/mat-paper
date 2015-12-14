@@ -7,13 +7,17 @@
     <template>
 
         <style>
-            :host .demo-container {
+            :host {
+                display: block;
+            }
+
+            :host .container {
                 @apply(--layout-horizontal);
                 @apply(--layout-wrap);
                 @apply(--layout-around-justified);
             }
 
-            :host .demo-container > mat-paper {
+            :host .container .paper {
                 @apply(--layout-horizontal);
                 @apply(--layout-center-center);
                 height: 80px;
@@ -26,7 +30,7 @@
 
             <mat-demo-panel label="Default" padding-disabled>
                 <script type="text/html">
-                    <div class="demo-container">
+                    <div class="container">
                         <mat-paper z="1">Z = 1</mat-paper>
                         <mat-paper z="2">Z = 2</mat-paper>
                         <mat-paper z="3">Z = 3</mat-paper>
@@ -53,7 +57,7 @@
                         <mat-paper z="24">Z = 24</mat-paper>
                     </div>
                 </script>
-                <div class="demo-container">
+                <div class="container">
                     <mat-paper z="1">Z = 1</mat-paper>
                     <mat-paper z="2">Z = 2</mat-paper>
                     <mat-paper z="3">Z = 3</mat-paper>
