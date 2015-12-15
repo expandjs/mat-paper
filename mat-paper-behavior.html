@@ -18,6 +18,7 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
 @repository https://github.com/ExpandJS/mat-paper
 
 @behavior xp-master-behavior /bower_components/xp-master-behavior/xp-master-behavior.html
+@behavior xp-refirer-behavior /bower_components/xp-refirer-behavior/xp-refirer-behavior.html
 @behavior xp-slave-behavior /bower_components/xp-slave-behavior/xp-slave-behavior.html
 @behavior mat-palette /bower_components/mat-palette/mat-palette.html
 
@@ -25,6 +26,7 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
 @dependency expandjs ExpandJS/expandjs#0.10.0
 @dependency mat-palette ExpandJS/mat-palette#0.10.0
 @dependency xp-master-behavior ExpandJS/xp-master-behavior#0.10.0
+@dependency xp-refirer-behavior ExpandJS/xp-refirer-behavior#0.10.0
 @dependency xp-slave-behavior ExpandJS/xp-slave-behavior#0.10.0
 -->
 
@@ -32,6 +34,7 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
 <link rel="import" href="../expandjs/expandjs.html">
 <link rel="import" href="../mat-palette/mat-palette.html">
 <link rel="import" href="../xp-master-behavior/xp-master-behavior.html">
+<link rel="import" href="../xp-refirer-behavior/xp-refirer-behavior.html">
 <link rel="import" href="../xp-slave-behavior/xp-slave-behavior.html">
 
 <script>
@@ -112,6 +115,21 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
                 readOnly: true,
                 reflectToAttribute: true,
                 type: String
+            },
+
+            /**
+             * If set to true, the element is hidden.
+             *
+             * @attribute hidden
+             * @type boolean
+             * @default false
+             * @notifies
+             */
+            hidden: {
+                notify: true,
+                reflectToAttribute: true,
+                type: Boolean,
+                value: false
             },
 
             /**
@@ -237,7 +255,7 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
         _foregroundObserver: function () {
 
             // Setting
-            XP.invoke(this.inks || [], '_setForeground', this.foreground);
+            this.async(this.notifyAll.bind(this, 'inks', 'paper.foreground', this.foreground));
         },
 
         // OBSERVER
@@ -250,14 +268,8 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
         // OBSERVER
         _themeObserver: function (post, pre) {
 
-            // Vars
-            var self = this;
-
             // Checking
-            if (!self.papers) { return; }
-
-            // Setting
-            self.papers.forEach(function (paper) { if (paper.theme === pre) { paper.theme = self.theme; } });
+            if (this.papers) { this.papers.forEach(function (paper) { if (paper.theme === pre) { paper.theme = post; } }); }
         },
 
         /*********************************************************************/
@@ -294,6 +306,7 @@ A behavior used to implement [Material Design paper](http://www.google.com/desig
 
     Polymer.MatPaperBehavior = [
         Polymer.XPMasterBehavior,
+        Polymer.XPRefirerBehavior,
         Polymer.XPSlaveBehavior,
         Polymer.MatPalette,
         Polymer.MatPaperBehaviorImp
