@@ -38,14 +38,6 @@ A stylesheet used to stylize a [Material Design paper](http://www.google.com/des
                 display: block;
                 position: relative;
                 text-align: left;
-                -webkit-transition: border 0.4s cubic-bezier(0.55, 0, 0.01, 1),
-                                    box-shadow 0.4s cubic-bezier(0.55, 0, 0.01, 1),
-                                    opacity 0.4s cubic-bezier(0.55, 0, 0.01, 1),
-                                    visibility 0.4s cubic-bezier(0.55, 0, 0.01, 1),
-                                    border-radius 0.8s cubic-bezier(0.55, 0, 0.01, 1),
-                                    height 0.8s cubic-bezier(0.55, 0, 0.01, 1),
-                                    -webkit-transform 0.8s cubic-bezier(0.55, 0, 0.01, 1),
-                                    width 0.8s cubic-bezier(0.55, 0, 0.01, 1);
                 transition: border 0.4s cubic-bezier(0.55, 0, 0.01, 1),
                             box-shadow 0.4s cubic-bezier(0.55, 0, 0.01, 1),
                             opacity 0.4s cubic-bezier(0.55, 0, 0.01, 1),
@@ -110,9 +102,8 @@ A stylesheet used to stylize a [Material Design paper](http://www.google.com/des
 
             :host([disabled]) {
                 box-shadow: none !important;
-                filter: gray;
-                filter: grayscale(100%);
                 -webkit-filter: grayscale(100%);
+                filter: grayscale(100%);
                 pointer-events: none !important;
             }
 
