@@ -26,6 +26,7 @@
     "mat-palette": "ExpandJS/mat-palette#0.10.0",
     "mat-shadow": "ExpandJS/mat-shadow#0.10.0",
     "mat-spacing": "ExpandJS/mat-spacing#0.10.0",
+    "mat-typography": "ExpandJS/mat-typography#0.10.0",
     "xp-master-behavior": "ExpandJS/xp-master-behavior#0.10.0",
     "xp-refirer-behavior": "ExpandJS/xp-refirer-behavior#0.10.0",
     "xp-slave-behavior": "ExpandJS/xp-slave-behavior#0.10.0",
